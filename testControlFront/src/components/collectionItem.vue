@@ -13,7 +13,7 @@
                 name="testCasesIdName"
                 label="ID тест-кейса"
                 >
-                <a-select v-model:value="testCasesIdName">
+                    <a-select v-model:value="testCasesIdName">
                         <a-select-option value="TC">TC</a-select-option>
                         <a-select-option value="TS">TS</a-select-option>
                     </a-select>
@@ -38,7 +38,9 @@
                 >
                     {{ fetched.name }}
                 </a-form-item>
-                <a-form-item name="description" label="Описание">
+                <a-form-item 
+                name="description" 
+                label="Описание">
                     <a-textarea v-model:value="formState.description" />
                 </a-form-item>
                 <a-form-item
@@ -51,10 +53,10 @@
         </a-modal>
         <a-flex :vertical="'vertical'">
             <RouterLink :to="`/collections`">Назад</RouterLink>
-            <a-typography-title :style="{marginBottom: '8px', marginTop: '12px'}">Коллекция: {{ fetched.name }}</a-typography-title>
-            <a-typography-title :style="{marginBottom: '4px', marginTop: '4px'}" :level="2">Проект: {{ fetched.project }}</a-typography-title>
-            <a-typography-title :style="{marginBottom: '4px', marginTop: '4px'}" :level="3">Описание:</a-typography-title>
-            <a-typography-paragraph :style="{marginBottom: '12px', marginTop: '4px'}"
+            <a-typography-title :style="style4">Коллекция: {{ fetched.name }}</a-typography-title>
+            <a-typography-title :style="style4" :level="2">Проект: {{ fetched.project }}</a-typography-title>
+            <a-typography-title :style="style4" :level="3">Описание:</a-typography-title>
+            <a-typography-paragraph :style="style4"
                 :content="fetched.description"
             />
         </a-flex>
@@ -105,15 +107,18 @@
 
 <script setup lang="ts">
 import {ref, onMounted, reactive} from "vue"
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import type { FormInstance } from 'ant-design-vue';
 const activeKey = ref('1');
 const colId = ref()
 const route = useRoute();
-const router = useRouter();
 colId.value = route.params.id
 const addOther = ref(false)
 const notInCol = ref()
+const style4 ={
+    marginBottom: '4px',
+    marginTop: '4px'
+}
 interface Item {
     id: number
     name: string;
@@ -173,10 +178,6 @@ const onOk = () => {
       })
 };
 
-
-function nO(){
-
-}
 function update(){
   fetch(`http://localhost:3000/collections/getbyid?id=${colId.value}`)
   .then(response => response.json())

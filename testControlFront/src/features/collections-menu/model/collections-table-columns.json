@@ -1,0 +1,27 @@
+[
+  {
+    "title": "id",
+    "dataIndex": "id",
+    "key": "id"
+  },
+  {
+    "title": "Название коллекции",
+    "dataIndex": "name",
+    "key": "name"
+  },
+  {
+    "title": "Описание",
+    "dataIndex": "description",
+    "key": "description"
+  },
+  {
+    "title": "Проект",
+    "dataIndex": "project",
+    "key": "project"
+  },
+  {
+    "title":"Действия",
+    "dataIndex":"delete",
+    "key":"id"
+  }
+]

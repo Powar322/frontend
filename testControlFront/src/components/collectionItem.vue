@@ -38,8 +38,8 @@
                 >
                     {{ fetched.name }}
                 </a-form-item>
-                <a-form-item 
-                name="description" 
+                <a-form-item
+                name="description"
                 label="Описание">
                     <a-textarea v-model:value="formState.description" />
                 </a-form-item>
@@ -52,7 +52,7 @@
             </a-form>
         </a-modal>
         <a-flex :vertical="'vertical'">
-            <RouterLink :to="`/collections`">Назад</RouterLink>
+            <RouterLink :to="`/`">Назад</RouterLink>
             <a-typography-title :style="style4">Коллекция: {{ fetched.name }}</a-typography-title>
             <a-typography-title :style="style4" :level="2">Проект: {{ fetched.project }}</a-typography-title>
             <a-typography-title :style="style4" :level="3">Описание:</a-typography-title>

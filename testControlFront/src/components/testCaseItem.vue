@@ -2,24 +2,24 @@
     <div>
         <a-flex :vertical="'vertical'">
             <RouterLink :to="`/collections/${fetched.colId}`">Назад</RouterLink>
-            <a-typography-title :style="{marginBottom: '8px', marginTop: '12px'}">{{ fetched.caseId }}: {{ fetched.testName }}</a-typography-title>
-            <a-typography-title :style="{marginBottom: '4px', marginTop: '4px'}" :level="2">Коллекция: {{ fetched.colName }}</a-typography-title>
+            <a-typography-title :style="style4">{{ fetched.caseId }}: {{ fetched.testName }}</a-typography-title>
+            <a-typography-title :style="style4" :level="2">Коллекция: {{ fetched.colName }}</a-typography-title>
             <a-row>
                 <a-col :span="8">
-                    <a-typography-title :style="{marginBottom: '4px', marginTop: '4px'}" :level="3">Описание:</a-typography-title>
+                    <a-typography-title :style="style4" :level="3">Описание:</a-typography-title>
                 </a-col>
                 <a-col :span="8">
-                    <a-typography-title :style="{marginBottom: '4px', marginTop: '4px'}" :level="3">Тестовые данные:</a-typography-title>
+                    <a-typography-title :style="style4" :level="3">Тестовые данные:</a-typography-title>
                 </a-col>
             </a-row>
             <a-row>
                 <a-col :span="8">
-                    <a-typography-paragraph :style="{marginBottom: '0px', marginTop: '4px'}"
+                    <a-typography-paragraph :style="style4"
                         :content="fetched.description"
                     />
                 </a-col>
                 <a-col :span="8">
-                    <a-typography-paragraph :style="{marginBottom: '0px', marginTop: '4px'}"
+                    <a-typography-paragraph :style="style4"
                         :content="fetched.testData"
                     />
                 </a-col>
@@ -69,6 +69,11 @@ const fetched = ref<Item>({
 })
 
 const testCases = ref()
+
+const style4 ={
+    marginBottom: '4px',
+    marginTop: '4px'
+}
 
 function update(){
   fetch(`http://localhost:3000/testcases/getbyid?id=${colId.value}`)

@@ -17,6 +17,7 @@ const handleNameChange = (e: InputEvent) => {
 
   createCollectionStore.setName(target.value)
 }
+
 </script>
 
 <style scoped>

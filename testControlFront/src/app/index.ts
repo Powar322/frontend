@@ -10,6 +10,11 @@ const router = createRouter({
       component: ()=> import('@/pages/CollectionsMenu.vue'),
     },
     {
+      path: '/col',
+      name: 'col',
+      component: ()=> import('@/pages/CollectionItem.vue')
+    },
+    {
       path: '/collections/:id',
       name: 'collectionItem',
       component: collectionItem

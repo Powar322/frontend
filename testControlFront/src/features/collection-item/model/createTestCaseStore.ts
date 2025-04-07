@@ -47,14 +47,13 @@ export const useCreateTestCaseStore = defineStore('create-test-case', {
       this.testData = testData
     },
     async createTestCase(){
-      console.log(this.casePrefix + this.caseId)
-      // await createTestCase({
-      //   caseId: this.caseId,
-      //   fkCollectionId: this.fkCollectionId,
-      //   name: this.name,
-      //   description: this.description,
-      //   testData: this.testData
-      // })
+      await createTestCase({
+        caseId: this.casePrefix + this.caseId,
+        fkCollectionId: this.fkCollectionId,
+        name: this.name,
+        description: this.description,
+        testData: this.testData
+      })
     }
   }
 })

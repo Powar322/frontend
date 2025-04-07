@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import collectionItem from '../components/collectionItem.vue'
 import testCaseItem from '../components/testCaseItem.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,14 +9,9 @@ const router = createRouter({
       component: ()=> import('@/pages/CollectionsMenu.vue'),
     },
     {
-      path: '/col',
-      name: 'col',
-      component: ()=> import('@/pages/CollectionItem.vue')
-    },
-    {
       path: '/collections/:id',
       name: 'collectionItem',
-      component: collectionItem
+      component: ()=> import('@/pages/CollectionItem.vue')
     },
     {
       path: '/testcase/:id',

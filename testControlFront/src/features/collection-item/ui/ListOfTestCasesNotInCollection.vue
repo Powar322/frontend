@@ -19,12 +19,12 @@
 
 <script setup lang="ts">
 import {onMounted} from 'vue'
-import {useNotInCollectionItemStore} from '../model'
+import {useNotInCollectionItemStore, useCollectionItemStore} from '../model'
 
 const notInCollectionItemStore = useNotInCollectionItemStore()
-
+const collectionItemStore = useCollectionItemStore()
 onMounted( ()=>{
-  notInCollectionItemStore.getNotInCollection(1)
+  notInCollectionItemStore.getNotInCollection(collectionItemStore.id)
 })
 </script>
 

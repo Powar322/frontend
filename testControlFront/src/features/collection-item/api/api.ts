@@ -59,9 +59,7 @@ const createTestCase = async (
   body: CreateTestCaseParams
 ): Promise <CreateTestCaseResponse> => {
   try {
-    const response = await api.post('/testcases/create', {
-      body
-    })
+    const response = await api.post('/testcases/create', body)
     return response.data
   } catch (error){
     throw error

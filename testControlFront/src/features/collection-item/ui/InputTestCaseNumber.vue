@@ -1,5 +1,5 @@
 <template>
-  <a-input v-model:value="createTestCaseStore.name"
+  <a-input v-model:value="createTestCaseStore.caseId"
   @change="handleNameChange"
   >
     <template #addonBefore>
@@ -18,12 +18,12 @@ const createTestCaseStore = useCreateTestCaseStore()
 
 const handleNameChange = (e: InputEvent) => {
   const target = e.target as HTMLInputElement
+
+  createTestCaseStore.setCaseId(target.value)
 }
 
-const handlePrefixChange = (e: BeforeXrSelect) => {
-  const target = e.target as HTMLSelectElement
-
-  createTestCaseStore.setCasePrefix(target.value)
+const handlePrefixChange = (e: string) => {
+  createTestCaseStore.setCasePrefix(e)
 }
 </script>
 

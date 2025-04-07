@@ -33,7 +33,7 @@ export const useCollectionItemStore = defineStore('collection-item', {
     testCases: []
   }),
   actions:{
-    async createCollection(colId: number){
+    async getCollections(colId: number){
       const { id, name, description, project } = await getCollectionById({
         id: colId
       })

@@ -1,6 +1,7 @@
 <template>
   <a-tabs v-model:activeKey="activeKey">
     <a-tab-pane key="1" tab="Тест-кейсы">
+      <CreateNewTestCaseModal/>
       <ListOfTestCases/>
       <a-typography-link @click="showNotInCollection">
         Привязать другой тест-кейс
@@ -14,6 +15,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ListOfTestCases, ListOfTestCasesNotInCollection } from '@/features/collection-item'
+import CreateNewTestCaseModal from './CreateNewTestCaseModal.vue'
 const activeKey = ref('1');
 const notInCol = ref(false)
 

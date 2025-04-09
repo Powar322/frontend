@@ -24,7 +24,7 @@
       </a-layout-sider>
       <a-layout style="padding: 24px 24px 24px">
         <a-layout-content
-          :style="{ background: '#fff', padding: '24px', margin: 0, overflow: 'auto' }"
+          class="content"
         >
         <RouterView>
         </RouterView>
@@ -45,6 +45,13 @@ const openKeys = ref<string[]>(['sub1']);
 <style>
 body{
   margin: 0 !important;
+}
+
+.content {
+  background: #fff;
+  padding: 24px;
+  margin: 0;
+  overflow: auto;
 }
 
 

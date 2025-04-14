@@ -6,9 +6,9 @@
           :description="item.description"
         >
           <template #title>
-            <a :href="`/testcase/${item.id}`">{{ item.caseId }}</a>
+            <a :href="`/testcase/${item.id}`">{{ item.testCaseId }}</a>
             <a-flex :vertical="'vertical'">
-              <div>Коллекция: {{ item.colName }}</div>
+              <div>Коллекция: {{ item.testCaseCollectionName }}</div>
             </a-flex>
           </template>
         </a-list-item-meta>

@@ -3,8 +3,9 @@ import {getTestCasesNotInCollection } from '../api'
 
 type TestCase = {
   id: number
-  caseId: string
-  colName: string
+  testCaseId: string
+  testCaseCollectionId: number
+  testCaseCollectionName: string
   description: string
   testCaseName: string
   testData: string
@@ -23,7 +24,7 @@ export const useNotInCollectionItemStore = defineStore('not-in-collection-item',
   actions: {
     async getNotInCollection(id: number){
       this.testCases = await getTestCasesNotInCollection({
-        id: id
+        excludeCollectionId: id
       })
     }
   }

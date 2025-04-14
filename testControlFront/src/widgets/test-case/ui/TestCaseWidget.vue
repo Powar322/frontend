@@ -1,5 +1,5 @@
 <template>
-  <RouterLink :to="`/collections/${TestCaseStore.colId}`">Назад</RouterLink>
+  <RouterLink :to="`/collections/${TestCaseStore.testCaseCollectionId}`">Назад</RouterLink>
   <DescriptionTestCase/>
   <ListOfTestCaseSteps/>
 </template>

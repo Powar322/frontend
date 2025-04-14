@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import {getTestCaseById, getTestCaseStepsById} from '../api'
+import {getTestCaseById, getTestCaseStepsByTestCaseId} from '../api'
 
 type TestCaseStep = {
   id: number
@@ -9,20 +9,21 @@ type TestCaseStep = {
 }
 
 type Id = number | null
-type CaseId = string | null
-type ColId = number | null
-type ColName = string | null
-type TestName = string | null
+type TestCaseId = string | null
+type TestCaseCollectionId = number | null
+type TestCaseCollectionName = string | null
+type TestCaseName = string | null
 type Description = string | null
 type TestData = string | null
 
 
+
 type State = {
   id: Id
-  caseId: CaseId
-  colId: ColId
-  colName: ColName
-  testName: TestName
+  testCaseId: TestCaseId
+  testCaseCollectionId: TestCaseCollectionId
+  testCaseCollectionName: TestCaseCollectionName
+  testCaseName: TestCaseName
   description: Description
   testData: TestData
   steps: Array<TestCaseStep> | []
@@ -31,29 +32,27 @@ type State = {
 export const useTestCaseStore = defineStore('test-case', {
   state: (): State => ({
     id: null,
-    caseId: null,
-    colId: null,
-    colName: null,
-    testName: null,
+    testCaseId: null,
+    testCaseCollectionId: null,
+    testCaseCollectionName: null,
+    testCaseName: null,
     description: null,
     testData: null,
     steps: []
   }),
   actions:{
-    async getTestCase(testCaseId: number){
-      const {id, caseId, colId, colName, testName, description, testData  } = await getTestCaseById({
-        id: testCaseId
-      })
+    async getTestCase(testCaseIdRequest: number){
+      const {id, testCaseId, testCaseCollectionId, testCaseCollectionName, testCaseName, description, testData  } = await getTestCaseById(testCaseIdRequest)
       this.id = id
-      this.caseId = caseId
-      this.colId = colId
-      this.colName = colName
-      this.testName = testName
+      this.testCaseId = testCaseId
+      this.testCaseCollectionId = testCaseCollectionId
+      this.testCaseCollectionName = testCaseCollectionName
+      this.testCaseName = testCaseName
       this.description = description
       this.testData = testData
 
-      this.steps = await getTestCaseStepsById({
-        id: testCaseId
+      this.steps = await getTestCaseStepsByTestCaseId({
+        testCaseId: testCaseIdRequest
       })
     }
   }

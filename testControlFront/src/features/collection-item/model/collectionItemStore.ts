@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
-import { getCollectionById, getTestCaseCollectionById } from '../api'
+import { getTestCaseСollectionById, getTestCasesByCollectionId } from '../api'
 
 type TestCase = {
   id: number
-  caseId: string
-  colName: string
+  testCaseId: string
+  testCaseCollectionId: number
+  testCaseCollectionName: string
   description: string
   testCaseName: string
   testData: string
@@ -34,18 +35,15 @@ export const useCollectionItemStore = defineStore('collection-item', {
   }),
   actions:{
     async getCollections(colId: number){
-      const { id, name, description, project } = await getCollectionById({
-        id: colId
-      })
+      const { id, name, description, project } = await getTestCaseСollectionById( colId )
       this.id = id
       this.name = name
       this.description = description
       this.project = project
 
-      this.testCases = await getTestCaseCollectionById({
-        colId: colId
+      this.testCases = await getTestCasesByCollectionId({
+        collectionId: colId
       })
-      console.log(this.testCases)
     }
   }
 })

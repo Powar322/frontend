@@ -1,7 +1,8 @@
 type TestCase = {
   id: number
-  caseId: string
-  colName: string
+  testCaseId: string
+  testCaseCollectionId: number
+  testCaseCollectionName: string
   description: string
   testCaseName: string
   testData: string
@@ -13,10 +14,6 @@ type Description = string | null
 type Project = string | null
 type TestCases = TestCase | null
 
-export type TestCaseCollectionParams = {
-  id: number
-}
-
 export type TestCaseCollectionResponse = {
   id: Id,
   name: Name,
@@ -24,12 +21,20 @@ export type TestCaseCollectionResponse = {
   project: Project
 }
 
-export type TestCasesCollectionParams = {
-  colId: number
+export type TestCasesByCollectionIdParams = {
+  collectionId: number
 }
 
-export type TestCasesCollectionResponse = {
+export type TestCasesByCollectionIdResponse = {
   testCases: TestCases[]
+}
+
+export type TestCaseByIdResponse = {
+  testCase: TestCase
+}
+
+export type TestCasesNotInCollectionParams = {
+  excludeCollectionId: number
 }
 
 export type TestCasesNotInCollectionResponse = {
@@ -42,9 +47,9 @@ export type CreateTestCaseResponse = {
 }
 
 export type CreateTestCaseParams = {
-  caseId: string | null,
+  testCaseId: string | null,
   fkCollectionId: number | null,
-  name: string | null,
+  testCaseName: string | null,
   description: string | null,
   testData: string | null
 }

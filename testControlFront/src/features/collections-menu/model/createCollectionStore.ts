@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { createCollection } from '@/features/collections-menu/'
+import { createTestCaseCollection } from '@/features/collections-menu/'
 
 type Name = string | null
 type Description = string | null
@@ -29,7 +29,7 @@ export const useCreateCollectionStore = defineStore('collection-create', {
     },
 
     async createCollection(){
-      await createCollection({
+      await createTestCaseCollection({
         name: this.name,
         description: this.description,
         project: this.project

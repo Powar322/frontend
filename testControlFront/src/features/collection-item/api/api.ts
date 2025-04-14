@@ -1,10 +1,11 @@
 import axios, { type AxiosInstance } from 'axios'
 import type {
-  TestCaseCollectionParams,
   TestCaseCollectionResponse,
-  TestCasesCollectionParams,
-  TestCasesCollectionResponse,
+  TestCaseByIdResponse,
+  TestCasesNotInCollectionParams,
   TestCasesNotInCollectionResponse,
+  TestCasesByCollectionIdParams,
+  TestCasesByCollectionIdResponse,
   CreateTestCaseResponse,
   CreateTestCaseParams
 } from './types.ts'
@@ -16,24 +17,33 @@ const api: AxiosInstance = axios.create({
   }
 })
 
-const getCollectionById = async (
-  params: TestCaseCollectionParams
+const getTestCaseСollectionById = async (
+  id: number
 ): Promise<TestCaseCollectionResponse> => {
   try {
-    const response = await api.get('/collections/getbyid', {
-      params
-    })
+    const response = await api.get(`/testCaseCollections/${id}`)
     return response.data
   } catch (error){
     throw error
   }
 }
 
-const getTestCaseCollectionById = async (
-  params: TestCasesCollectionParams
-): Promise<TestCasesCollectionResponse> => {
+const getTestCaseById = async (
+  id: number
+): Promise<TestCaseByIdResponse> => {
   try {
-    const response = await api.get('/testcases/getbyidcol', {
+    const response = await api.get(`/testcases/${id}`)
+    return response.data
+  } catch (error){
+    throw error
+  }
+}
+
+const getTestCasesByCollectionId = async (
+  params: TestCasesByCollectionIdParams
+): Promise<TestCasesByCollectionIdResponse> => {
+  try {
+    const response = await api.get(`/testcases`, {
       params
     })
     return response.data
@@ -43,10 +53,10 @@ const getTestCaseCollectionById = async (
 }
 
 const getTestCasesNotInCollection = async (
-  params: TestCaseCollectionParams
+  params: TestCasesNotInCollectionParams
 ): Promise <TestCasesNotInCollectionResponse> => {
   try {
-    const response = await api.get('/collections/getnotincollection', {
+    const response = await api.get(`/testcases`,{
       params
     })
     return response.data
@@ -59,11 +69,11 @@ const createTestCase = async (
   body: CreateTestCaseParams
 ): Promise <CreateTestCaseResponse> => {
   try {
-    const response = await api.post('/testcases/create', body)
+    const response = await api.post('/testcases', body)
     return response.data
   } catch (error){
     throw error
   }
 }
 
-export { getCollectionById, getTestCaseCollectionById, getTestCasesNotInCollection, createTestCase}
+export { getTestCaseСollectionById, getTestCasesByCollectionId, getTestCaseById, getTestCasesNotInCollection, createTestCase}

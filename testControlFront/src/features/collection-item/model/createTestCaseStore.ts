@@ -48,9 +48,9 @@ export const useCreateTestCaseStore = defineStore('create-test-case', {
     },
     async createTestCase(){
       await createTestCase({
-        caseId: this.casePrefix + this.caseId,
+        testCaseId: this.casePrefix + this.caseId,
         fkCollectionId: this.fkCollectionId,
-        name: this.name,
+        testCaseName: this.name,
         description: this.description,
         testData: this.testData
       })

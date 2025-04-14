@@ -6,7 +6,7 @@
           :description="item.description"
         >
           <template #title>
-            <a :href="`/testcase/${item.id}`">{{ item.caseId }}</a>
+            <a :href="`/testcase/${item.id}`">{{ item.testCaseId }}</a>
           </template>
         </a-list-item-meta>
       </a-list-item>

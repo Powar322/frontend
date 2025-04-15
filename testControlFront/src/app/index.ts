@@ -16,6 +16,11 @@ const router = createRouter({
       path: '/testcase/:id',
       name: 'testCaseItem',
       component: ()=> import('@/pages/TestCase.vue')
+    },
+    {
+      path: '/collections/:id/runs',
+      name: 'collectionRuns',
+      component: ()=> import('@/pages/CollectionRunResult.vue')
     }
   ],
 })

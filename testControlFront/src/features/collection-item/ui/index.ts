@@ -4,6 +4,7 @@ import InputTestCaseNumber from './InputTestCaseNumber.vue'
 import InputTestCaseName from './InputTestCaseName.vue'
 import InputTestCaseDescription from './InputTestCaseDescription.vue'
 import InputTestCaseTestData from './InputTestCaseTestData.vue'
+import ListOfCollectionRuns from './ListOfCollectionRuns.vue'
 
 export {
   ListOfTestCasesNotInCollection,
@@ -11,5 +12,6 @@ export {
   InputTestCaseNumber,
   InputTestCaseName,
   InputTestCaseDescription,
-  InputTestCaseTestData
+  InputTestCaseTestData,
+  ListOfCollectionRuns
 }

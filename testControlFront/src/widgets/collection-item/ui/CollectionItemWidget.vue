@@ -13,13 +13,16 @@ const route = useRoute();
 import {onMounted} from 'vue'
 import CollectionItemTabs from './CollectionItemTabs.vue'
 import {
-  useCollectionItemStore
+  useCollectionItemStore,
+  useCollectionRunsStore
 } from '@/features/collection-item'
 
 const collectionItemStore = useCollectionItemStore()
+const collectionRunsStore = useCollectionRunsStore()
 const colId = route.params.id
 onMounted( ()=>{
   collectionItemStore.getCollections(colId)
+  collectionRunsStore.getCollectionRuns(colId)
 })
 
 const style4 ={

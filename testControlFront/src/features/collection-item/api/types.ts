@@ -53,3 +53,15 @@ export type CreateTestCaseParams = {
   description: string | null,
   testData: string | null
 }
+
+export type GetCollectionRunsByCollectionIdParams = {
+  collectionId: number
+}
+
+export type GetCollectionRunsByCollectionIdResponse = {
+  id: number,
+  collectionId: number,
+  resultId: number,
+  resultName: string,
+  dateOfRun: string
+}

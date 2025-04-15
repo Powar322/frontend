@@ -11,7 +11,7 @@ type TestCase = {
   testData: string
 }
 
-type TestCases = Array<TestCase> | null
+type TestCases = Array<TestCase> | []
 
 type State = {
 

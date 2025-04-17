@@ -1,18 +1,32 @@
 import { defineStore } from 'pinia'
-import { getTestCaseCollectionRunById, getTestCaseCollectionRunStatsById } from '../api'
+import { getTestCaseCollectionRunById,
+  getTestCaseCollectionRunStatsById,
+  getTestCaseCollectionRunResultsForTC} from '../api'
 
 type Stats = {
   total: number,
   passed: number,
   failed: number,
   inProgress: number,
+  notDo: number
 } | {}
+
+type TestCasesResults = {
+  id: number | null,
+  resTestCaseId: number | null,
+  testCaseId: string | null,
+  testCaseDescription: string | null,
+  collectionRunId: number | null,
+  resultId: number | null,
+  resultName: string | null
+}
 
 type Id = number | null
 type CollectionId = number | null
 type ResultId = number | null
 type ResultName = string | null
 type DateOfRun = string | null
+type TestCasesResultsArr = TestCasesResults[] | []
 
 
 type State = {
@@ -22,6 +36,7 @@ type State = {
   resultName: ResultName,
   dateOfRun: DateOfRun,
   stats: Stats
+  testCasesResults: TestCasesResultsArr
 }
 
 export const useCollectionRunStore = defineStore('collection-run', {
@@ -31,7 +46,8 @@ export const useCollectionRunStore = defineStore('collection-run', {
     resultId: null,
     resultName: null,
     dateOfRun: null,
-    stats: {}
+    stats: {},
+    testCasesResults: []
   }),
   actions: {
     async getTestCaseCollectionRunId(testCaseCollectionRunId: number){
@@ -43,6 +59,10 @@ export const useCollectionRunStore = defineStore('collection-run', {
       this.dateOfRun = dateOfRun
 
       this.stats = await getTestCaseCollectionRunStatsById(testCaseCollectionRunId)
+
+      this.testCasesResults = await getTestCaseCollectionRunResultsForTC({
+        collectionRunId: testCaseCollectionRunId
+      })
     }
   }
 })

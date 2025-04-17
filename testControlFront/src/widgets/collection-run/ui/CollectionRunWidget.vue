@@ -1,12 +1,21 @@
 <template>
   <RouterLink :to="`/collections/${collectionRunStore.collectionId}`">Назад</RouterLink>
-  <a-typography-title>Прогон: {{ collectionRunStore.id }} коллекции {{collectionRunStore.collectionId}}</a-typography-title>
+  <DescriptionTestCaseCollectionRunResult/>
+  <ProgressTestCaseCollectionRunResult/>
+  <ButtonEndRunTestCaseCollection/>
+  <a-divider />
+  <ListOfTestCasesResults/>
 </template>
 
 <script setup lang="ts">
 import {useRoute} from 'vue-router'
 import {onMounted} from 'vue'
-import {useCollectionRunStore} from '@/features/collection-run-results'
+import {
+  DescriptionTestCaseCollectionRunResult,
+  ProgressTestCaseCollectionRunResult,
+  ListOfTestCasesResults,
+  ButtonEndRunTestCaseCollection,
+  useCollectionRunStore} from '@/features/collection-run-results'
 
 const collectionRunStore = useCollectionRunStore()
 const route = useRoute();

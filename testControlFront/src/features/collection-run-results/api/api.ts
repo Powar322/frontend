@@ -1,7 +1,13 @@
 import axios, { type AxiosInstance } from 'axios'
 import type {
   TestCaseCollectionRunResponse,
-  TestCaseCollectionRunStatsResponse
+  TestCaseCollectionRunStatsResponse,
+  TestCaseCollectionRunResultsForTCParams,
+  TestCaseCollectionRunResultsForTCResponse,
+  TestCaseCollectionRunResultsForTCResultBody,
+  TestCaseCollectionRunResultsForTCResultResponse,
+  updateTestCaseCollectionRunResultsBody,
+  updateTestCaseCollectionRunResultsResponse
 } from './types.ts'
 
 const api: AxiosInstance = axios.create({
@@ -33,5 +39,41 @@ const getTestCaseCollectionRunStatsById = async (
   }
 }
 
+const getTestCaseCollectionRunResultsForTC = async (
+  params: TestCaseCollectionRunResultsForTCParams
+): Promise<TestCaseCollectionRunResultsForTCResponse[]> => {
+  try {
+    const response = await api.get(`/collectionRunsResult`, {
+      params
+    })
+    return response.data
+  } catch (error){
+    throw error
+  }
+}
 
-export {getTestCaseCollectionRunById, getTestCaseCollectionRunStatsById }
+const updateTestCaseCollectionRunResultsForTCResult = async (
+  resultForTCId: number,
+  body: TestCaseCollectionRunResultsForTCResultBody
+): Promise<TestCaseCollectionRunResultsForTCResultResponse> => {
+  try {
+    const response = await api.put(`/collectionRunsResult/${resultForTCId}`, body)
+    return response.data
+  } catch (error){
+    throw error
+  }
+}
+
+const updateTestCaseCollectionRunResultsResult = async (
+  resultId: number,
+  body: updateTestCaseCollectionRunResultsBody
+): Promise<updateTestCaseCollectionRunResultsResponse> => {
+  try {
+    const response = await api.put(`/collectionRuns/${resultId}`, body)
+    return response.data
+  } catch (error){
+    throw error
+  }
+}
+
+export {getTestCaseCollectionRunById, getTestCaseCollectionRunStatsById, getTestCaseCollectionRunResultsForTC, updateTestCaseCollectionRunResultsForTCResult, updateTestCaseCollectionRunResultsResult }

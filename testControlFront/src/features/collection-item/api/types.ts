@@ -65,3 +65,16 @@ export type GetCollectionRunsByCollectionIdResponse = {
   resultName: string,
   dateOfRun: string
 }
+
+export type createTestCaseCollectionRunBody = {
+  collectionId: number,
+  dateOfRun: string
+}
+
+export type createTestCaseCollectionRunResponse = {
+  id: number,
+  collectionId: number,
+  resultId: number,
+  resultName: string,
+  dateOfRun: string
+}

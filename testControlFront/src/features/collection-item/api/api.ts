@@ -9,7 +9,7 @@ import type {
   CreateTestCaseResponse,
   CreateTestCaseParams,
   GetCollectionRunsByCollectionIdParams,
-  GetCollectionRunsByCollectionIdResponse
+  GetCollectionRunsByCollectionIdResponse, createTestCaseCollectionRunBody
 } from './types.ts'
 
 const api: AxiosInstance = axios.create({
@@ -91,4 +91,15 @@ const getCollectionRunsByCollectionId = async (
   }
 }
 
-export { getTestCaseСollectionById, getTestCasesByCollectionId, getTestCaseById, getTestCasesNotInCollection, createTestCase, getCollectionRunsByCollectionId}
+const createTestCaseCollectionRun = async(
+  body: createTestCaseCollectionRunBody
+): Promise<createTestCaseCollectionRunResponse> => {
+  try {
+    const response = await api.post('/collectionRuns', body)
+    return response.data
+  } catch (error){
+    throw error
+  }
+}
+
+export { getTestCaseСollectionById, getTestCasesByCollectionId, getTestCaseById, getTestCasesNotInCollection, createTestCase, getCollectionRunsByCollectionId, createTestCaseCollectionRun}

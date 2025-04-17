@@ -9,6 +9,7 @@
       <ListOfTestCasesNotInCollection v-if="notInCol"/>
     </a-tab-pane>
     <a-tab-pane key="2" tab="Запуски" force-render>
+      <ButtonStartTestCaseCollectionRun/>
       <ListOfCollectionRuns/>
     </a-tab-pane>
   </a-tabs>
@@ -16,7 +17,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ListOfTestCases, ListOfTestCasesNotInCollection, ListOfCollectionRuns } from '@/features/collection-item'
+import { ListOfTestCases, ButtonStartTestCaseCollectionRun, ListOfTestCasesNotInCollection, ListOfCollectionRuns } from '@/features/collection-item'
 import CreateNewTestCaseModal from './CreateNewTestCaseModal.vue'
 const activeKey = ref('1');
 const notInCol = ref(false)

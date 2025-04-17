@@ -5,7 +5,7 @@
         <a-list-item-meta>
           <template #title>
             <a-space>
-              <a :href="`/testcase/${item.id}`">№{{ item.id }}</a>
+              <a :href="`/collections/${item.id}/runs`">№{{ item.id }}</a>
               <a-tag :color="pickColor(item.resultId)">{{ item.resultName }}</a-tag>
             </a-space>
           </template>

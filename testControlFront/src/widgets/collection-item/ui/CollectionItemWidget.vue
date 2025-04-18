@@ -1,9 +1,6 @@
 <template>
   <RouterLink :to="`/`">Назад</RouterLink>
-  <a-typography-title :style="style4">Коллекция: {{ collectionItemStore.name }}</a-typography-title>
-  <a-typography-title :level="2" :style="style4">Проект: {{ collectionItemStore.project }}</a-typography-title>
-  <a-typography-title :level="3" :style="style4">Описание:</a-typography-title>
-  <a-typography-paragraph :content="collectionItemStore.description" :style="style4" />
+  <DescriptionTestCaseCollection/>
   <CollectionItemTabs/>
 </template>
 
@@ -14,7 +11,8 @@ import {onMounted} from 'vue'
 import CollectionItemTabs from './CollectionItemTabs.vue'
 import {
   useCollectionItemStore,
-  useCollectionRunsStore
+  useCollectionRunsStore,
+  DescriptionTestCaseCollection
 } from '@/features/collection-item'
 
 const collectionItemStore = useCollectionItemStore()

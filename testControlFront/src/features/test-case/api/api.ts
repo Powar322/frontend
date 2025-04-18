@@ -2,7 +2,9 @@ import axios, { type AxiosInstance } from 'axios'
 import type {
   GetTestCaseByIdResponse,
   getTestCaseStepParams,
-  getTestCaseStepResponse
+  getTestCaseStepResponse,
+  updateTestCaseStepByIdBody,
+  updateTestCaseStepByIdResponse
 } from './types.ts'
 
 const api: AxiosInstance = axios.create({
@@ -36,4 +38,16 @@ const getTestCaseStepsByTestCaseId = async (
   }
 }
 
-export {getTestCaseById, getTestCaseStepsByTestCaseId}
+const updateTestCaseStepById = async (
+  id: number,
+  body: updateTestCaseStepByIdBody
+): Promise <updateTestCaseStepByIdResponse> => {
+  try{
+    const response = await api.put(`/steps/${id}`, body)
+    return response.data
+  }catch(error){
+    throw error
+  }
+}
+
+export {getTestCaseById, getTestCaseStepsByTestCaseId, updateTestCaseStepById}

@@ -27,3 +27,10 @@ export type getTestCaseStepResponse = {
   testCaseStep: TestCaseStep[]
 }
 
+export type updateTestCaseStepByIdBody = {
+  step: string
+}
+
+export type updateTestCaseStepByIdResponse = {
+  message: string
+}

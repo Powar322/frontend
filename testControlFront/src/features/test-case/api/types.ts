@@ -34,3 +34,16 @@ export type updateTestCaseStepByIdBody = {
 export type updateTestCaseStepByIdResponse = {
   message: string
 }
+
+export type createTestCaseStepBody = {
+  FKTestCaseId: number,
+  numberOfStep: number,
+  step: string
+}
+
+export type createTestCaseStepResponse = {
+  id: number
+  testCaseId: number
+  numberOfStep: number
+  step: string
+}

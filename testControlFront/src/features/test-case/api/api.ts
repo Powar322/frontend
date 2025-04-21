@@ -4,7 +4,9 @@ import type {
   getTestCaseStepParams,
   getTestCaseStepResponse,
   updateTestCaseStepByIdBody,
-  updateTestCaseStepByIdResponse
+  updateTestCaseStepByIdResponse,
+  createTestCaseStepBody,
+  createTestCaseStepResponse
 } from './types.ts'
 
 const api: AxiosInstance = axios.create({
@@ -50,4 +52,15 @@ const updateTestCaseStepById = async (
   }
 }
 
-export {getTestCaseById, getTestCaseStepsByTestCaseId, updateTestCaseStepById}
+const createTestCaseStep = async(
+  body: createTestCaseStepBody
+): Promise <createTestCaseStepResponse> => {
+  try{
+    const response = await api.post(`/steps`,body)
+    return response.data
+  } catch (error){
+    throw error
+  }
+}
+
+export {getTestCaseById, getTestCaseStepsByTestCaseId, updateTestCaseStepById, createTestCaseStep}

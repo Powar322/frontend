@@ -16,22 +16,13 @@
       <div>Header</div>
     </template>
     <template #footer>
-      <a-popconfirm title="Добавление шага" ok-text="Yes" cancel-text="No">
-        <template #description>
-          <a-space>
-            Номер шага
-            <a-input-number size="small" :min="1" :max="100000" />
-            Описание шага
-            <a-input size="small"/>
-          </a-space>
-        </template>
-        <a href="#">Добавить шаг</a>
-      </a-popconfirm>
+      <PopCreateTestCaseStep/>
     </template>
   </a-list>
 </template>
 
 <script setup lang="ts">
+import PopCreateTestCaseStep from './PopCreateTestCaseStep.vue'
 import {useTestCaseStore} from '../model'
 import {updateTestCaseStepById} from '../api'
 
@@ -40,6 +31,8 @@ const testCaseStore = useTestCaseStore()
 function handleEdit(id: number, step: string) {
   updateTestCaseStepById(id, {step: step})
 }
+
+
 
 </script>
 

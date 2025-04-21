@@ -1,5 +1,7 @@
-import { useTestCaseStore } from '@/features/test-case/model/testCaseStore.ts'
+import { useTestCaseStore } from './testCaseStore.ts'
+import {useCreateTestCaseStepStore} from './createTestCaseStepStore.ts'
 
 export {
-  useTestCaseStore
+  useTestCaseStore,
+  useCreateTestCaseStepStore
 }

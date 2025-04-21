@@ -6,7 +6,7 @@
           :description="item.description"
         >
           <template #title>
-            <a :href="`/testcase/${item.id}`">{{ item.testCaseId }}</a>
+            <PopAddInCollectionTestCase :item="item" :newCollection="collectionItemStore.id"/>
             <a-flex :vertical="'vertical'">
               <div>Коллекция: {{ item.testCaseCollectionName }}</div>
             </a-flex>
@@ -20,6 +20,7 @@
 <script setup lang="ts">
 import {onMounted} from 'vue'
 import {useNotInCollectionItemStore, useCollectionItemStore} from '../model'
+import PopAddInCollectionTestCase from './PopAddInCollectionTestCase.vue'
 
 const notInCollectionItemStore = useNotInCollectionItemStore()
 const collectionItemStore = useCollectionItemStore()

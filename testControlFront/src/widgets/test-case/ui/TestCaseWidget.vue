@@ -1,6 +1,7 @@
 <template>
   <RouterLink :to="`/collections/${TestCaseStore.testCaseCollectionId}`">Назад</RouterLink>
   <DescriptionTestCase/>
+  <AddAttachmentsTestCase/>
   <ListOfTestCaseSteps/>
 </template>
 
@@ -10,6 +11,7 @@ import {onMounted} from 'vue'
 import {
   DescriptionTestCase,
   ListOfTestCaseSteps,
+  AddAttachmentsTestCase,
   useTestCaseStore} from '@/features/test-case'
 const route = useRoute();
 const TestCaseStore = useTestCaseStore()

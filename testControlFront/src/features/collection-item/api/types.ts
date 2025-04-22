@@ -78,3 +78,17 @@ export type createTestCaseCollectionRunResponse = {
   resultName: string,
   dateOfRun: string
 }
+
+export type updateTestCaseCollectionLinkBody = {
+  collectionId: number
+}
+
+export type updateTestCaseCollectionLinkResponse = {
+  id: number,
+  testCaseId: string,
+  fkCollectionId: number,
+  testCaseCollectionName: string,
+  testCaseName: string,
+  description: string,
+  testData: string
+}

@@ -6,7 +6,7 @@
           :description="item.description"
         >
           <template #title>
-            <PopAddInCollectionTestCase :item="item" :newCollection="collectionItemStore.id"/>
+            <PopAddInCollectionTestCase :item="item" :newCollectionId="collectionItemStore.id"/>
             <a-flex :vertical="'vertical'">
               <div>Коллекция: {{ item.testCaseCollectionName }}</div>
             </a-flex>

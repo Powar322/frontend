@@ -56,6 +56,7 @@ declare module 'vue' {
     ATypographyLink: typeof import('ant-design-vue/es')['TypographyLink']
     ATypographyParagraph: typeof import('ant-design-vue/es')['TypographyParagraph']
     ATypographyTitle: typeof import('ant-design-vue/es')['TypographyTitle']
+    AUpload: typeof import('ant-design-vue/es')['Upload']
     CollectionItem: typeof import('./src/components/collectionItem.vue')['default']
     CollectionMain: typeof import('./src/components/collectionMain.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']

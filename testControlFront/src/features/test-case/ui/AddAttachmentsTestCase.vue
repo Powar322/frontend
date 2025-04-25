@@ -1,19 +1,15 @@
 <template>
   <a-row>
-    <a-col :span="1">
-      <a-typography-paragraph>Вложения</a-typography-paragraph>
+    <a-col :span="2">
+      <a-typography-title :level="5">Вложения</a-typography-title>
     </a-col>
     <a-col :span="1">
       <a-upload
-        v-model:file-list="fileList"
-        name="file"
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-        :max-count="1"
-        :headers="headers"
-        @change="handleChange"
+        :custom-request="customRequest"
       >
         <a-button type="text" size="small">
-          <PlusOutlined style="font-size: 14px" />
+          <a-typography-title :level="5"><PlusOutlined style="font-size: 14px" /></a-typography-title>
+
         </a-button>
       </a-upload>
     </a-col>
@@ -22,27 +18,44 @@
 
 <script setup lang="ts">
 import {PlusOutlined} from '@ant-design/icons-vue'
-import { ref } from 'vue';
-import { message } from 'ant-design-vue';
-import type { UploadChangeParam } from 'ant-design-vue';
+import {useRoute} from 'vue-router'
+const route = useRoute();
 
-const handleChange = (info: UploadChangeParam) => {
-  if (info.file.status !== 'uploading') {
-    console.log(info.file, info.fileList);
-  }
-  if (info.file.status === 'done') {
-    message.success(`${info.file.name} file uploaded successfully`);
-  } else if (info.file.status === 'error') {
-    message.error(`${info.file.name} file upload failed.`);
+const customRequest = async ({ file, onSuccess, onError }) => {
+  try {
+    // Читаем файл как ArrayBuffer (бинарные данные)
+    const binaryData = await readFileAsArrayBuffer(file);
+    console.log('Бинарные данные файла:', binaryData);
+
+     await uploadToServer(binaryData);
+
+    onSuccess(); // Уведомляем AntDV об успешной загрузке
+  } catch (error) {
+    onError(error);
   }
 };
 
-const fileList = ref([]);
-const headers = {
-  authorization: 'authorization-text',
+// Функция для чтения файла как ArrayBuffer
+const readFileAsArrayBuffer = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
 };
 
-
+// Пример отправки на сервер (замените на свой API)
+const uploadToServer = async (binaryData) => {
+  const formData = new FormData();
+  formData.append('file', new Blob([binaryData]));
+  formData.append('testCaseId', route.params.id);
+  formData.append('isImg', false);
+  await fetch('http://localhost:3000/testcaseattachments', {
+    method: 'POST',
+    body: formData,
+  });
+};
 </script>
 
 <style scoped>

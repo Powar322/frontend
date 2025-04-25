@@ -47,3 +47,74 @@ export type createTestCaseStepResponse = {
   numberOfStep: number
   step: string
 }
+
+export type uploadTestCaseAttachmentsBody = {
+  testCaseId: number
+  isImg: boolean
+  file: any
+}
+
+export type uploadTestCaseAttachmentsRequest = {
+  id: number
+  testCaseId: number
+  isImg: boolean
+  fileSize: number
+  mimetype: string
+}
+
+type Attachment = {
+  id: number,
+  testCaseId: number,
+  isImg: boolean,
+  url: string
+}
+
+export type getTestCaseAttachmentsRequest = {
+  testCaseId: number
+}
+
+
+export type getTestCaseAttachmentsResponse = {
+  success: boolean
+  count: number
+  attachments: Attachment[]
+}
+
+export type getTestCaseCommentRequest = {
+  testCaseId: number
+}
+
+type Comment = {
+  id: number
+  testCaseId: number
+  text: string
+  date: string
+}
+
+export type getTestCaseCommentResponse = {
+  comments: Comment[]
+}
+
+export type createTestCaseCommentBody = {
+  testCaseId: number
+  text: string
+  date: string
+}
+
+export type createTestCaseCommentResponse = {
+  id: number
+  testCaseId: number
+  text: string
+  date: string
+}
+
+export type updateTestCaseCommentBody = {
+  text: string
+}
+
+export type updateTestCaseCommentResponse = {
+  id: number
+  testCaseId: number
+  text: string
+  date: string
+}

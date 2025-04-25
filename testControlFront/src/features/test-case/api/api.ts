@@ -6,7 +6,15 @@ import type {
   updateTestCaseStepByIdBody,
   updateTestCaseStepByIdResponse,
   createTestCaseStepBody,
-  createTestCaseStepResponse
+  createTestCaseStepResponse,
+  getTestCaseAttachmentsRequest,
+  getTestCaseAttachmentsResponse,
+  getTestCaseCommentRequest,
+  getTestCaseCommentResponse,
+  createTestCaseCommentBody,
+  createTestCaseCommentResponse,
+  updateTestCaseCommentBody,
+  updateTestCaseCommentResponse
 } from './types.ts'
 
 const api: AxiosInstance = axios.create({
@@ -63,4 +71,52 @@ const createTestCaseStep = async(
   }
 }
 
-export {getTestCaseById, getTestCaseStepsByTestCaseId, updateTestCaseStepById, createTestCaseStep}
+
+const getTestAttachments = async(
+  params: getTestCaseAttachmentsRequest
+): Promise <getTestCaseAttachmentsResponse> => {
+  try {
+    const response = await api.get(`/testcaseattachments`, {params})
+    return response.data
+  } catch (error){
+    throw error
+  }
+}
+
+const getTestCaseCommentsByTestCaseId = async(
+  params: getTestCaseCommentRequest
+): Promise <getTestCaseCommentResponse> => {
+  try {
+    const response = await api.get(`/testcasecomments`,{
+      params
+    })
+    return response.data
+  } catch (error){
+    throw error
+  }
+}
+
+const createTestCaseComment = async(
+  body: createTestCaseCommentBody
+): Promise <createTestCaseCommentResponse> => {
+  try {
+    const response = await api.post(`/testcasecomments`,body)
+    return response.data
+  } catch(error){
+    throw error
+  }
+}
+
+const updateTestCaseComment = async(
+  commentId: number,
+  body: updateTestCaseCommentBody
+): Promise <updateTestCaseCommentResponse> => {
+  try{
+  const response = await api.put(`/testcasecomments/${commentId}`, body)
+  return response.data
+  } catch(error){
+    throw error
+  }
+}
+
+export {getTestCaseById, getTestCaseStepsByTestCaseId, updateTestCaseStepById, createTestCaseStep, getTestAttachments, getTestCaseCommentsByTestCaseId, createTestCaseComment, updateTestCaseComment}

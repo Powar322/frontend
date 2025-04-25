@@ -19,6 +19,7 @@ const TestCaseStore = useTestCaseStore()
 onMounted(()=>{
   TestCaseStore.getTestCase(route.params.id)
 })
+
 </script>
 
 <style scoped>

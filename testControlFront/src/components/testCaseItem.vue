@@ -24,7 +24,7 @@
                     />
                 </a-col>
             </a-row>
-            
+
         </a-flex>
     </div>
     <a-divider />
@@ -39,6 +39,9 @@
             <div>Footer</div>
         </template>
     </a-list>
+  <a-timeline>
+    <a-timeline-item v-for="item in testCases" :key="item.id">{{ item.step }}</a-timeline-item>
+  </a-timeline>
 </template>
 
 <script setup lang="ts">

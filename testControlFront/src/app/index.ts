@@ -1,6 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import collectionItem from '../components/collectionItem.vue'
-import testCaseItem from '../components/testCaseItem.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -12,12 +10,17 @@ const router = createRouter({
     {
       path: '/collections/:id',
       name: 'collectionItem',
-      component: collectionItem
+      component: ()=> import('@/pages/CollectionItem.vue')
     },
     {
       path: '/testcase/:id',
       name: 'testCaseItem',
-      component: testCaseItem
+      component: ()=> import('@/pages/TestCase.vue')
+    },
+    {
+      path: '/collections/:id/runs',
+      name: 'collectionRuns',
+      component: ()=> import('@/pages/CollectionRunResult.vue')
     }
   ],
 })

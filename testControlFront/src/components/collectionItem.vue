@@ -177,7 +177,6 @@ const onOk = () => {
         body: JSON.stringify(formState)
       })
 };
-
 function update(){
   fetch(`http://localhost:3000/collections/getbyid?id=${colId.value}`)
   .then(response => response.json())

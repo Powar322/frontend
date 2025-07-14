@@ -1,7 +1,6 @@
 import axios, { type AxiosInstance } from 'axios'
 import type {
   GetTestCaseCollectionsResponse,
-  TestCaseCollectionDeleteParams,
   DeleteTestCaseCollectionsResponse,
   CreateTestCaseCollectionParams,
   CreateTestCaseCollectionsResponse
@@ -14,37 +13,35 @@ const api: AxiosInstance = axios.create({
   }
 })
 
-const getAllCollections = async (): Promise<GetTestCaseCollectionsResponse> => {
+const getTestCaseCollections = async (): Promise<GetTestCaseCollectionsResponse> => {
   try {
-    const response = await api.get('/collections/get')
+    const response = await api.get('/testCaseCollections')
     return response.data
   } catch (error){
     throw error
   }
 }
 
-const deleteCollection = async (
-  params: TestCaseCollectionDeleteParams,
+const deleteTestCaseCollection = async (
+  id: number
 ): Promise<DeleteTestCaseCollectionsResponse> => {
   try {
-    const response = await api.delete(`/collections/delete`, {
-      params
-    })
+    const response = await api.delete(`/testCaseCollections/${id}`)
     return response.data
   } catch (error) {
     throw error
   }
 }
 
-const createCollection = async (
+const createTestCaseCollection = async (
   body: CreateTestCaseCollectionParams,
 ): Promise<CreateTestCaseCollectionsResponse> =>{
   try{
-    const response = await api.post(`/collections/create`, body)
+    const response = await api.post(`/testCaseCollections`, body)
     return response.data
   } catch (error) {
     throw error
   }
 }
 
-export {getAllCollections, deleteCollection, createCollection}
+export {getTestCaseCollections, deleteTestCaseCollection, createTestCaseCollection}

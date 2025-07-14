@@ -1,7 +1,7 @@
 <template>
   <a-table
     :columns="columns"
-    :data-source="data"
+    :data-source="testCaseCollectionsStore.testCaseCollections"
     >
     <template #bodyCell="{ column,  record }">
       <template v-if="column.dataIndex === 'name'">
@@ -9,7 +9,7 @@
       </template>
       <template v-if="column.dataIndex === 'delete'">
         <a-popconfirm
-          v-if="data.length"
+          v-if="record"
           title="Sure to delete?"
           @confirm="onDelete(record.id)"
         >
@@ -22,22 +22,16 @@
 
 
 <script setup lang="ts">
-import {onMounted, ref} from 'vue'
-import { collectionsTableColumns, type CollectionsColumns } from '../model'
-import {getAllCollections, deleteCollection} from '../api'
+import { collectionsTableColumns, useTestCaseCollectionsStore, type CollectionsColumns } from '../model'
+import { deleteTestCaseCollection} from '../api'
 
+const testCaseCollectionsStore = useTestCaseCollectionsStore()
 const columns: Array<CollectionsColumns> = collectionsTableColumns
-const data = ref()
 
 const onDelete = async (key: number) => {
-  await deleteCollection({ id: key })
-  data.value = await getAllCollections()
+  await deleteTestCaseCollection( key )
+  await testCaseCollectionsStore.getAllTestCaseCollection()
 };
-
-onMounted(async ()=>{
-  data.value = await getAllCollections()
-})
-
 </script>
 <style scoped>
 
